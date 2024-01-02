@@ -2,6 +2,8 @@ package edu.tcu.cs.hogwartsartifactsonline.wizard;
 
 import edu.tcu.cs.hogwartsartifactsonline.artifact.Artifact;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 import java.util.ArrayList;
