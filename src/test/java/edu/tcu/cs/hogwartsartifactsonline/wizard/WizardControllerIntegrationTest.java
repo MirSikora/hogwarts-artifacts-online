@@ -1,7 +1,6 @@
 package edu.tcu.cs.hogwartsartifactsonline.wizard;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import edu.tcu.cs.hogwartsartifactsonline.system.StatusCode;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
@@ -16,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -29,7 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DisplayName("Integration tests for Wizard API endpoints")
 @Tag("integration")
-public class WizardControllerIntegrationTest {
+@ActiveProfiles(value = "dev")
+class WizardControllerIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -41,6 +42,7 @@ public class WizardControllerIntegrationTest {
 
     @Value("${api.endpoint.base-url}")
     String baseUrl;
+
 
     @BeforeEach
     void setUp() throws Exception {
@@ -234,4 +236,5 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Could not find artifact with Id 1250808601744904199 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
 }
